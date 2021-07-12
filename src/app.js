@@ -21,6 +21,10 @@ const osMap = {
 //document.querySelector("#os").innerHTML = osMap[process.platform];
 //document.querySelector("#build-version").innerHTML = "Build " + app.getVersion();
 
+function addConsoleLine(identifier, line) {
+  document.querySelector("#debug-console").innerHTML += "\\\n[" + identifier + "]: " + line;
+}
+
 // We can communicate with main process through messages.
 ipcRenderer.on("app-path", (event, appDirPath) => {
   // Holy crap! This is browser window with HTML and stuff, but I can read
@@ -31,6 +35,14 @@ ipcRenderer.on("app-path", (event, appDirPath) => {
   document.querySelector("#build-version").innerHTML = "Build " + manifest.version;
 });
 ipcRenderer.send("need-app-path");
+
+ipcRenderer.on("game-debug", (event, debugLine) => {
+  addConsoleLine("Debug", debugLine)
+})
+
+ipcRenderer.on("game-data", (event, dataLine) => {
+  addConsoleLine("Data", dataLine)
+})
 
 /*document.querySelector(".electron-website-link").addEventListener(
   "click",

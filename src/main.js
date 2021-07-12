@@ -98,6 +98,8 @@ app.on("ready", () => {
   if (env.name === "development") {
     mainWindow.openDevTools();
   }
+  launcher.on('debug', (e) => mainWindow.webContents.send('game-debug',e))
+  launcher.on('data', (e) => mainWindow.webContents.send('game-data',e))
 });
 
 app.on("window-all-closed", () => {
