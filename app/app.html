@@ -2,16 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Electron Boilerplate</title>
+    <title>TheCoveMC.net Launcher</title>
+    <script>
+      function openTab(tabName) {
+        var i;
+        var x = document.getElementsByClassName("tab-container");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+      }
+    </script>
   </head>
   <body>
     <div id="app" class="container" style="display: none;">
+      <img src="resources/images/cove-logo.png" width="800">
       <h1 id="brand">CoveLauncher</h1>
       <button id="launch">Launch Minecraft</button>
       <p id="build-version">CoveLauncher v.whoknowsrofl</p>
 
-      <textarea id="debug-console" rows="10" cols="100" readonly>
-      </textarea>
+      <button id="open-launch-options" onclick="openTab('launch-options')">Launch Options</button><button id="open-debug-console" onclick="openTab('console-log')">Debug Console</button>
+      <div id="launch-options" class="tab-container" style="display:none">
+        <h2>Launch Options</h2>
+        <p>
+          Configure your game :)
+          Only touch these if you know what you're doing!
+        </p>
+      </div>
+      
+      <div id="console-log" class="tab-container" style="display:none">
+        <h2>Console Log</h2>
+        <textarea id="debug-console" rows="10" cols="100" readonly></textarea>
+      </div>
     </div>
 
     <script src="app.js"></script>

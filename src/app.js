@@ -22,7 +22,9 @@ const osMap = {
 //document.querySelector("#build-version").innerHTML = "Build " + app.getVersion();
 
 function addConsoleLine(identifier, line) {
-  document.querySelector("#debug-console").innerHTML += "\\\n[" + identifier + "]: " + line;
+  var debugConsole = document.querySelector("#debug-console");
+  debugConsole.innerHTML += "\\\n[" + identifier + "]: " + line;
+  debugConsole.scrollTop = debugConsole.scrollHeight;
 }
 
 // We can communicate with main process through messages.
